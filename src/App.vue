@@ -1,43 +1,69 @@
 <script setup>
-import {ref, onMounted} from 'vue'
+import {ref} from 'vue'
 // Components
 import Login from './components/login.vue'
 import Create from './components/create.vue'
 import Profile from "@/components/profile.vue";
+import axios from "axios";
+
 
 // Variables
-const token = ref('')
+const token = ref(localStorage.getItem('token'))
+const errorMessage = ref('')
 const createAccount = ref(false)
 
 // Functions
-
-/**
- * @description This function is to get the token from the localstorage
- * @returns {void}
- */
-const getToken = () => {
-  const localToken = localStorage.getItem('token')
-  if (localToken) {
-    token.value = localToken
-  }
+function logoutUser() {
+  // Clean error message
+  errorMessage.value = '';
+  // Conect to the API for logout user
+  axios.get(import.meta.env.VITE_API_USERS_BASE_URL + "account/logout/", {
+    headers: {
+      Authorization: "Token " + token.value,
+    }
+  })
+    .then(function () {
+      // Remove token
+      localStorage.removeItem('token');
+      // Clean token
+      token.value = '';
+    })
+    .catch(function (error) {
+      // Check error
+      if (error.response) {
+        errorMessage.value = error.response.data.response;
+      }
+    });
 }
-
-
-onMounted(() => {
-  getToken()
-})
 </script>
-
 <template>
   <header>
     <h1>Users Website</h1>
+    <nav>
+      <ul v-if="!token">
+        <li>
+          <button @click="createAccount = true">Create Account</button>
+        </li>
+        <li>
+          <button @click="createAccount = false">Login</button>
+        </li>
+      </ul>
+      <ul v-else>
+        <li>
+          <button @click="logoutUser">Logout</button>
+        </li>
+      </ul>
+    </nav>
   </header>
+  <div v-if="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </div>
   <main>
     <div v-if="!token">
-      <Create v-if="createAccount" msg="Es para crear el usuario" />
-      <Login v-else msg="Para logear el usuario" />
+      <Create v-if="createAccount"/>
+      <Login v-else @token="token = $event"/>
     </div>
-    <Profile v-else msg="Es para ver el perfil del usuario" />
+    <Profile v-else />
   </main>
   <footer>
     <p>

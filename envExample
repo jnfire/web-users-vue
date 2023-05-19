@@ -1,1 +1,1 @@
-VITE_API_USERS_BASE_URL=
+VITE_API_USERS_BASE_URL=http://api.localhost/api/v1/
