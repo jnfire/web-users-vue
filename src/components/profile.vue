@@ -160,58 +160,60 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2>Profile</h2>
-  <h3>{{ profile.name }}</h3>
-  <div v-if="errorMessage">
-    <p style="color: red;">{{ errorMessage }}</p>
-  </div>
-  <div>
-    <img :src="profile.avatar_url" alt="Avatar">
-    <form @submit.prevent="updateImageProfile">
-      <label for="avatar">Avatar:</label>
-      <input type="file" id="avatar" accept="image/*">
-      <button type="submit">Update image</button>
+  <div class="container">
+    <h2 class="main__title">Profile</h2>
+    <h3 class="main__subtitle">{{ profile.name }}</h3>
+    <div class="error" v-if="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </div>
+    <div>
+      <img class="avatar" :src="profile.avatar_url" alt="Avatar">
+      <form class="avatar__form" @submit.prevent="updateImageProfile">
+        <label class="avatar__form__item avatar__form__label" for="avatar">Avatar:</label>
+        <input class="avatar__form__item avatar__form__input" type="file" id="avatar" accept="image/*">
+        <button class="avatar__form__item avatar__form__button open" type="submit">Update image</button>
+      </form>
+    </div>
+    <form class="main__form" v-if="isEdit" @submit.prevent="updateProfile">
+      <div class="main__form__div">
+        <label class="main__form__label" for="email">Email:</label>
+        <input class="main__form__input" type="email" id="email" v-model="profile.email" required>
+      </div>
+      <div class="main__form__div">
+        <label class="main__form__label" for="first_name">First name:</label>
+        <input class="main__form__input" type="text" id="first_name" v-model="profile.first_name">
+      </div>
+      <div class="main__form__div">
+        <label class="main__form__label" for="last_name">Last name:</label>
+        <input class="main__form__input" type="text" id="last_name" v-model="profile.last_name" >
+      </div>
+      <div class="main__form__div">
+        <button class="main__form__button close" type="button" @click.prevent="isEdit = !isEdit">Cancel</button>
+        <button class="main__form__button open" type="submit">Save</button>
+      </div>
     </form>
-  </div>
-  <form v-if="isEdit" @submit.prevent="updateProfile">
-    <div>
-      <label for="email">Email:</label>
-      <input type="email" id="email" v-model="profile.email" required>
-    </div>
-    <div>
-      <label for="first_name">First name:</label>
-      <input type="text" id="first_name" v-model="profile.first_name">
-    </div>
-    <div>
-      <label for="last_name">Last name:</label>
-      <input type="text" id="last_name" v-model="profile.last_name" >
-    </div>
-    <div>
-      <button type="button" @click.prevent="isEdit = !isEdit">Cancel</button>
-      <button type="submit">Save</button>
-    </div>
-  </form>
-  <div v-else>
-    <div>
-      <p>Email:</p>
-      <p>
-        {{ profile.email }}
-      </p>
-    </div>
-    <div>
-      <p>First name:</p>
-      <p>
-        {{ profile.first_name }}
-      </p>
-    </div>
-    <div>
-      <p>Last name:</p>
-      <p>
-        {{ profile.last_name }}
-      </p>
-    </div>
-    <div>
-      <button type="button" @click.prevent="isEdit = !isEdit">Edit</button>
+    <div class="main__form" v-else>
+      <div class="main__form__div">
+        <p class="main__form__label">Email:</p>
+        <p class="main__form__input__set">
+          {{ profile.email }}
+        </p>
+      </div>
+      <div class="main__form__div">
+        <p class="main__form__label">First name:</p>
+        <p class="main__form__input__set">
+          {{ profile.first_name }}
+        </p>
+      </div>
+      <div class="main__form__div">
+        <p class="main__form__label">Last name:</p>
+        <p class="main__form__input__set">
+          {{ profile.last_name }}
+        </p>
+      </div>
+      <div class="main__form__div">
+        <button class="main__form__button open" type="button" @click.prevent="isEdit = !isEdit">Edit</button>
+      </div>
     </div>
   </div>
 </template>

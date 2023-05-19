@@ -42,25 +42,25 @@ function logoutUser() {
 }
 </script>
 <template>
-  <header>
-    <h1>Users Website</h1>
-    <nav>
-      <ul v-if="!token">
-        <li>
-          <button @click="createAccount = true">Create Account</button>
+  <header class="header">
+    <h1 class="header__title"><a href="#">Users Website</a></h1>
+    <nav class="header__nav">
+      <ul class="header__nav__ul" v-if="!token">
+        <li class="header__nav__li">
+          <button class="header__nav__button open" @click="createAccount = true">Create Account</button>
         </li>
-        <li>
-          <button @click="createAccount = false">Login</button>
+        <li class="header__nav__li">
+          <button class="header__nav__button" @click="createAccount = false">Login</button>
         </li>
       </ul>
-      <ul v-else>
-        <li>
-          <button @click="logoutUser">Logout</button>
+      <ul class="header__nav__ul" v-else>
+        <li class="header__nav__li">
+          <button class="header__nav__button close" @click="logoutUser">Logout</button>
         </li>
       </ul>
     </nav>
   </header>
-  <div v-if="errorMessage">
+  <div class="error" v-if="errorMessage">
     <p>{{ errorMessage }}</p>
   </div>
   <main>
@@ -70,9 +70,9 @@ function logoutUser() {
     </div>
     <Profile v-else :token="token"/>
   </main>
-  <footer>
-    <p>
-      Developed by <a href="https://github.com/jnfire">jnfire</a>
+  <footer class="footer">
+    <p class="footer__text">
+      Developed by <a class="footer__link" href="https://github.com/jnfire">jnfire</a>
     </p>
   </footer>
 </template>

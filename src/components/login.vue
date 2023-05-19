@@ -59,21 +59,21 @@ watch(
 </script>
 
 <template>
-  <div>
-    <h2>Login</h2>
-    <form @submit.prevent="loginUser">
-      <div v-if="errorMessage">
+  <div class="container">
+    <h2 class="main__title">Login</h2>
+    <form class="main__form" @submit.prevent="loginUser">
+      <div class="error" v-if="!errorMessage">
         <p style="color: red;">{{ errorMessage }}</p>
       </div>
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" required>
+      <div class="main__form__div">
+        <label class="main__form__label" for="email">Email:</label>
+        <input class="main__form__input" type="email" id="email" v-model="email" required>
       </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" required>
+      <div class="main__form__div">
+        <label class="main__form__label" for="password">Password:</label>
+        <input class="main__form__input" type="password" id="password" v-model="password" required>
       </div>
-      <button type="submit">Login</button>
+      <button class="main__form__button open" type="submit">Login</button>
     </form>
   </div>
 </template>

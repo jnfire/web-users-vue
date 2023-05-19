@@ -46,33 +46,33 @@ function createUser() {
 </script>
 
 <template>
-  <div>
-    <h2>Register</h2>
-    <form @submit.prevent="createUser" v-if="!isCreateUser">
-      <div v-if="errorMessage">
+  <div class="container">
+    <h2 class="main__title">Register</h2>
+    <form class="main__form" @submit.prevent="createUser" v-if="!isCreateUser">
+      <div class="error" v-if="errorMessage">
         <p style="color: red;">{{ errorMessage }}</p>
       </div>
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" required>
+      <div class="main__form__div">
+        <label class="main__form__label" for="email">Email:</label>
+        <input class="main__form__input" type="email" id="email" v-model="email" required>
       </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" required>
+      <div class="main__form__div">
+        <label class="main__form__label" for="password">Password:</label>
+        <input class="main__form__input" type="password" id="password" v-model="password" required>
       </div>
-      <div v-if="password !== ''">
-        <label for="confirmPassword">Repeat password:</label>
-        <input type="password" id="confirmPassword" v-model="confirmPassword" required>
+      <div class="main__form__div" v-if="password !== ''">
+        <label class="main__form__label" for="confirmPassword">Repeat password:</label>
+        <input class="main__form__input" type="password" id="confirmPassword" v-model="confirmPassword" required>
       </div>
-      <div v-if="password !== '' && confirmPassword !== ''">
+      <div class="main__form__div" v-if="password !== '' && confirmPassword !== ''">
         <p v-if="password !== confirmPassword" style="color: red;">Passwords do not match.</p>
         <p v-else style="color: green;">Passwords match.</p>
       </div>
       <button type="submit" >Register</button>
     </form>
-    <div v-else>
-      <p>¡User successfully created!</p>
-      <button @click="">Login</button>
+    <div class="main__form__completed" v-else>
+      <p class="main__form__completed__text">¡User successfully created!</p>
+      <button class="main__form__button" @click="">Login</button>
     </div>
   </div>
 </template>
