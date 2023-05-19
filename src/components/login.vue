@@ -1,13 +1,21 @@
 <script setup>
+// Dependencies
 import { ref, defineEmits, watch } from 'vue';
 import axios from "axios";
 
+// Variables
 const email = ref('');
 const password = ref('');
 const apiBaseUrl = ref(import.meta.env.VITE_API_USERS_BASE_URL);
 const errorMessage = ref('');
 const newToken = ref('');
 
+// Functions
+
+/**
+ * Login user on API
+ * @returns {Promise<void>}
+ */
 function loginUser() {
   if (email.value && password.value) {
     // Clean error message
@@ -37,6 +45,7 @@ function loginUser() {
   }
 }
 
+// Emits
 const emit = defineEmits(["token"]);
 
 // Watchers

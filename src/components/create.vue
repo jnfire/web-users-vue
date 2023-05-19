@@ -1,7 +1,9 @@
 <script setup>
+// Dependencies
 import { ref } from 'vue'
 import axios from "axios";
 
+// Variables
 const email = ref('');
 const password = ref('');
 const confirmPassword = ref('');
@@ -10,7 +12,12 @@ const isCreateUser = ref(false);
 const isIntentCreateUser = ref(false);
 const errorMessage = ref('');
 
+// Functions
 
+/**
+ * Create user on API
+ * @returns {Promise<void>}
+ */
 function createUser() {
   if (password.value === confirmPassword.value && email.value) {
     // Conect to the API for create user
@@ -36,7 +43,6 @@ function createUser() {
     })
   }
 }
-
 </script>
 
 <template>

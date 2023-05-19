@@ -13,6 +13,11 @@ const errorMessage = ref('')
 const createAccount = ref(false)
 
 // Functions
+
+/**
+ * Logout user on API
+ * @returns {Promise<void>}
+ */
 function logoutUser() {
   // Clean error message
   errorMessage.value = '';
@@ -63,7 +68,7 @@ function logoutUser() {
       <Create v-if="createAccount"/>
       <Login v-else @token="token = $event"/>
     </div>
-    <Profile v-else />
+    <Profile v-else :token="token"/>
   </main>
   <footer>
     <p>
