@@ -1,14 +1,13 @@
 # web-users-vue
-
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## See backend
+See the source code on [web-users-api](https://github.com/jnfire/api-users-django)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Create .env fron envExample
+```sh
+cp envExample .env
+```
 
 ## Project Setup
 
@@ -27,6 +26,8 @@ npm run dev
 ```sh
 npm run build
 ```
+
+Note: The exported code will be in the dist folder.
 
 ### Start gulp to render sass
 
