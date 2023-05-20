@@ -65,7 +65,7 @@ function logoutUser() {
   </div>
   <main>
     <div v-if="!token">
-      <Create v-if="createAccount"/>
+      <Create v-if="createAccount" @create="createAccount = !$event"/>
       <Login v-else @token="token = $event"/>
     </div>
     <Profile v-else :token="token"/>

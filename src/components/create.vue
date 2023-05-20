@@ -1,6 +1,6 @@
 <script setup>
 // Dependencies
-import { ref } from 'vue'
+import {defineEmits, ref, watch} from 'vue'
 import axios from "axios";
 
 // Variables
@@ -43,6 +43,17 @@ function createUser() {
     })
   }
 }
+
+const emit = defineEmits(["create"]);
+
+// Watchers
+watch(
+  // Watcher category
+  () => isCreateUser.value,
+  (isCreate) => {
+    emit("create", isCreate)
+  }
+)
 </script>
 
 <template>
@@ -68,11 +79,7 @@ function createUser() {
         <p v-if="password !== confirmPassword" style="color: red;">Passwords do not match.</p>
         <p v-else style="color: green;">Passwords match.</p>
       </div>
-      <button type="submit" >Register</button>
+      <button class="main__form__button open" type="submit" >Register</button>
     </form>
-    <div class="main__form__completed" v-else>
-      <p class="main__form__completed__text">¡User successfully created!</p>
-      <button class="main__form__button" @click="">Login</button>
-    </div>
   </div>
 </template>
